@@ -18,8 +18,11 @@ export class UserService {
 
     }
     async createUser( createUserDTO :CreateUserDTO): Promise<user> {
-        const user = new this.userModel(createUserDTO);
-        return user.save();
+        try{const user = new this.userModel(createUserDTO);
+        return user.save();}
+        catch{
+            console.error();
+        }
     }
     async deleteUser(UserID: string): Promise<user> {
         const delUser= await this.userModel.findByIdAndDelete(UserID);
